@@ -1,5 +1,6 @@
 import { GoogleGenAI } from "@google/genai";
 import { useState } from "react";
+import Loader from "./Loader/Loader";
 
 function InputPanel({
   input,
@@ -12,6 +13,9 @@ function InputPanel({
   const API = "AIzaSyDczbO_tGVjz6LV5O-BCQDuXXf3IQUX8fU";
   const ai = new GoogleGenAI({ apiKey: API });
   const [aioutput, setaiouput] = useState("");
+  const [loader, setLoader] = useState(false);
+
+
   async function main(text) {
     const prompt = { text };
 
@@ -20,15 +24,20 @@ function InputPanel({
       contents: prompt,
     });
 
-    console.log(response.text);
+    // console.log(response.text);
     return response.text;
   }
 
-  function handleAi(e) {
-    e.preventDefault();
-    console.log(input);
-    setaiouput(main(input));
-  }
+async function handleAi(e) {
+  e.preventDefault();
+  setLoader(true);
+
+  const result = await main(input);
+  setaiouput(result);
+
+  setLoader(false);
+}
+
   return (
     <section className="bg-white p-4 rounded-lg shadow-sm">
       <form onSubmit={onVerify}>
@@ -72,7 +81,10 @@ function InputPanel({
             Simulated AI + ledger
           </div>
         </div>
-        <div className="my-9">{aioutput}</div>
+        
+        {loader  ? <Loader/> : <div className="my-9">{aioutput}</div>}
+        
+        
       </form>
     </section>
   );
