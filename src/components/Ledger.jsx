@@ -25,8 +25,7 @@ function Ledger({ ledger }) {
       </ul>
 
       <div className="mt-4 text-xs text-gray-600">
-        This is a frontend-only demo. Replace fakeVerify with real API calls and
-        store ledger entries on-chain or in a backend.
+        Here all feedback given by our public!
       </div>
     </aside>
   );
