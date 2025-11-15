@@ -41,8 +41,8 @@ async function handleAi(e) {
   return (
     <section className="bg-white p-4 rounded-lg shadow-sm">
       <form onSubmit={onVerify}>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
-          Paste URL or text
+        <label className="block text-sm font-bold text-gray-700 mb-2">
+          Search and Verify with AI
         </label>
         <textarea
           value={input}
