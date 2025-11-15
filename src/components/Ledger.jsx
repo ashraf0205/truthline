@@ -27,6 +27,12 @@ function Ledger({ ledger }) {
       <div className="mt-4 text-xs text-gray-600">
         Here all feedback given by our public!
       </div>
+      <div className="bg-gray-200 h-32 text-center mt-10 pt-5 rounded-2xl">
+        <div className="font-medium font-serif">Contact Us for any feedback</div>
+        <a className="underline font-serif" href="tel:8601192820">Phone: 8601192820</a>
+        {/* <button>Number:- 8601192820</button> */}
+        <p><a className="underline font-serif" href="mailto:someone@example.com">Send email</a></p>
+      </div>
     </aside>
   );
 }

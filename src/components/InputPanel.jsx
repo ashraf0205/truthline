@@ -1,13 +1,34 @@
-
+import { GoogleGenAI } from "@google/genai";
+import { useState } from "react";
 
 function InputPanel({
   input,
   setInput,
   onVerify,
-  onQuickTest,
+  // onQuickTest,
   onClear,
   loading,
 }) {
+  const API = "AIzaSyDczbO_tGVjz6LV5O-BCQDuXXf3IQUX8fU";
+  const ai = new GoogleGenAI({ apiKey: API });
+  const [aioutput, setaiouput] = useState("");
+  async function main(text) {
+    const prompt = { text };
+
+    const response = await ai.models.generateContent({
+      model: "gemini-2.5-flash",
+      contents: prompt,
+    });
+
+    console.log(response.text);
+    return response.text;
+  }
+
+  function handleAi(e) {
+    e.preventDefault();
+    console.log(input);
+    setaiouput(main(input));
+  }
   return (
     <section className="bg-white p-4 rounded-lg shadow-sm">
       <form onSubmit={onVerify}>
@@ -34,9 +55,9 @@ function InputPanel({
           <button
             type="button"
             className="px-3 py-2 border rounded-md text-sm"
-            onClick={onQuickTest}
+            onClick={handleAi}
           >
-            Quick test
+            Quick test with Ai
           </button>
 
           <button
@@ -51,6 +72,7 @@ function InputPanel({
             Simulated AI + ledger
           </div>
         </div>
+        <div className="my-9">{aioutput}</div>
       </form>
     </section>
   );

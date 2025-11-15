@@ -5,7 +5,8 @@ import Result from "./components/Result";
 import Ledger from "./components/Ledger";
 import Footer from "./components/Footer";
 import News from "./components/News";
-import './App.css'
+import "./App.css";
+
 
 
 export default function App() {
@@ -14,6 +15,8 @@ export default function App() {
   const [result, setResult] = useState(null);
   const [ledger, setLedger] = useState([]);
   const [vote, setVote] = useState(null);
+
+
   function fakeVerify(text) {
     setLoading(true);
     setResult(null);
@@ -91,7 +94,6 @@ export default function App() {
     <div className="min-h-screen bg-blue-200 p-6 flex items-center justify-center">
       <div className="w-full max-w-4xl">
         <Header />
-
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="md:col-span-2 space-y-4">
             <InputPanel
@@ -107,7 +109,7 @@ export default function App() {
           </div>
 
           <Ledger ledger={ledger} />
-          <News/>
+          <News />
         </div>
 
         <Footer />
